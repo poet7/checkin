@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
   schedule:
-    - cron: 10 16 * * *
+    - cron: '10 16 * * *' # 建议将 cron 表达式用引号包裹
 
 jobs:
   run:
@@ -19,3 +19,14 @@ jobs:
         env:
           GLADOS: ${{ secrets.GLADOS }}
           NOTIFY: ${{ secrets.NOTIFY }}
+
+  # ---- 下面是新增的保活任务 ----
+  keepalive-job:
+    name: Keepalive Workflow
+    # 仅在定时触发时才运行保活，手动或 push 触发时跳过
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write # 必须赋予写入权限才能调用 API 激活仓库
+    steps:
+      - uses: liskin/gh-workflow-keepalive@v1
