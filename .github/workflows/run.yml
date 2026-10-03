@@ -18,6 +18,8 @@ jobs:
       - run: npm run main
         env:
           GLADOS: ${{ secrets.GLADOS }}
+          GLADOS_UA: ${{ secrets.GLADOS_UA }}
+          DOMAIN: ${{ secrets.DOMAIN }}
           NOTIFY: ${{ secrets.NOTIFY }}
 
   # ---- 下面是新增的保活任务 ----
