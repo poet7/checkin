@@ -29,6 +29,7 @@ jobs:
           GLADOS3_UA: ${{ secrets.GLADOS3_UA }}
           DOMAIN: ${{ secrets.DOMAIN }}
           NOTIFY: ${{ secrets.NOTIFY }}
+          AUTO_EXCHANGE: ${{ secrets.AUTO_EXCHANGE || 'false' }}
 
   # ---- 下面是新增的保活任务 ----
   keepalive-job:

@@ -231,9 +231,9 @@ const glados = async () => {
       }
 
       // ========== 4. 积分自动兑换（满500积分自动消耗500积分兑换100天） ==========
-      // 开关：AUTO_EXCHANGE，默认开启；设为 false 可关闭
+      // 开关：AUTO_EXCHANGE，默认关闭；设为 true 可开启
       // 阈值：EXCHANGE_THRESHOLD，默认 500
-      const autoExchange = String(process.env.AUTO_EXCHANGE || 'true').toLowerCase() !== 'false'
+      const autoExchange = String(process.env.AUTO_EXCHANGE || 'false').toLowerCase() === 'true'
       const exchangeThreshold = Number(process.env.EXCHANGE_THRESHOLD || 500)
       if (autoExchange && currentPoints != null && currentPoints >= exchangeThreshold) {
         try {
@@ -268,6 +268,8 @@ const glados = async () => {
         console.log(
           `[${tag}] 积分 ${currentPoints ?? '未知'} 未达到 ${exchangeThreshold}，本次不兑换`
         )
+      } else {
+        console.log(`[${tag}] 自动兑换已关闭，当前积分: ${currentPoints ?? '未知'}`)
       }
       // ========== 新增部分结束 ==========
 
