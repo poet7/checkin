@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
   schedule:
-    - cron: '10 16 * * *' # 建议将 cron 表达式用引号包裹
+    - cron: '0 2 * * *' # 建议将 cron 表达式用引号包裹
 
 jobs:
   run:
